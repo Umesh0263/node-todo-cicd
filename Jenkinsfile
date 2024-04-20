@@ -5,7 +5,7 @@ pipeline {
         
         stage("pull"){
             steps{
-                git url: "https://github.com/Umesh0263/node-todo-cicd.git", branch: "main"
+                git url: "https://github.com/Umesh0263/node-todo-cicd.git", branch: "master"
                 echo 'bhaiyya code clone ho gaya'
             }
         }
