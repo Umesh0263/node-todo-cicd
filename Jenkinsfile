@@ -1,17 +1,17 @@
 pipeline {
-    agent { label "dev-server"}
+    agent any
     
     stages {
         
-        stage("code"){
+        stage("pull"){
             steps{
-                git url: "https://github.com/LondheShubham153/node-todo-cicd.git", branch: "master"
+                git url: "https://github.com/Umesh0263/node-todo-cicd.git", branch: "main"
                 echo 'bhaiyya code clone ho gaya'
             }
         }
         stage("build and test"){
             steps{
-                sh "docker build -t node-app-test-new ."
+                sh "docker build -t nodetodoapp:latest ."
                 echo 'code build bhi ho gaya'
             }
         }
@@ -22,10 +22,10 @@ pipeline {
         }
         stage("push"){
             steps{
-                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
-                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                sh "docker tag node-app-test-new:latest ${env.dockerHubUser}/node-app-test-new:latest"
-                sh "docker push ${env.dockerHubUser}/node-app-test-new:latest"
+                withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerhub-pass",usernameVariable:"dockerhub-user")]){
+                sh "docker login -u ${env.dockerhub-user} -p ${env.dockerhub-pass}"
+                sh "docker tag nodetodoapp:latest ${env.dockerhub-user}/nodetodoapp:latest"
+                sh "docker push ${env.dockerhub-user}/nodetodoapp:latest"
                 echo 'image push ho gaya'
                 }
             }
