@@ -24,8 +24,8 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId:"dockerHub",passwordVariable:"dockerhub-pass",usernameVariable:"dockerhub-user")]){
                 sh "docker login -u ${env.dockerhub-user} -p ${env.dockerhub-pass}"
-                sh "docker tag nodetodoapp:latest ${env.dockerhub-user}/nodetodoapp:latest"
-                sh "docker push ${env.dockerhub-user}/nodetodoapp:latest"
+                sh "docker tag nodetodoapp:latest ${env.dockerhub-user}/nodetodoapp1:latest"
+                sh "docker push ${env.dockerhub-user}/nodetodoapp1:latest"
                 echo 'image push ho gaya'
                 }
             }
