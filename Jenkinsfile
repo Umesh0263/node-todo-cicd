@@ -11,7 +11,7 @@ pipeline {
         }
         stage("build and test"){
             steps{
-                sh "sudo docker build -t nodetodoapp:latest ."
+                sh "docker build -t nodetodoapp:latest ."
                 echo 'code build bhi ho gaya'
             }
         }
